@@ -30,3 +30,25 @@
 Функции: `function`
 
 Объект Даты, Регулярные выражения, Ошибки
+
+## 04 - Простое общение с пользователем
+Пример комманды `confirm()` с двумя вариантами ответа, 
+
+если нажато `ok`:
+
+```javascript
+const question = confirm("Are you here?");
+console.log(question); // true
+```
+если нажато `cancel`:
+
+```javascript
+const question = confirm("Are you here?");
+console.log(question); // false
+```
+Когда требуется конкретный ответ от пользователя, используется комманда `prompt();`
+
+```javascript
+const answer = prompt("Вам есть 18?", "");
+console.log(answer); // То что укажет в текстовом поле пользователь
+```
