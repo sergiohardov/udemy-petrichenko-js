@@ -88,5 +88,5 @@ console.log("2*4 == '8'"); // true
 Строгое сравнение учитывает и **тип данных**, пример:
 
 ```javascript
-console.log("2*4 == '8'"); // false
+console.log("2*4 === '8'"); // false
 ```
