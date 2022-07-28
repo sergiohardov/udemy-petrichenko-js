@@ -52,3 +52,12 @@ console.log(question); // false
 const answer = prompt("Вам есть 18?", "");
 console.log(answer); // То что укажет в текстовом поле пользователь
 ```
+
+## 05 - Интерполяция (ES6)
+
+Аналог конкатанация строк, использование переменной внутри строки:
+
+```javascript
+const category = "toys";
+console.log(`https://someurl.com/${category}/5`); // https://someurl.com/toys/5
+```
