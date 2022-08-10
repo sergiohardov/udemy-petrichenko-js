@@ -320,4 +320,8 @@ function done() {
 	console.log('Я прошел этот урок')
 }
 learnJS('JavaScript', done)
+
+// console result:
+// Я учу JavaScript
+// Я прошел этот урок
 ```
