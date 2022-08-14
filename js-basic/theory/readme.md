@@ -325,3 +325,130 @@ learnJS('JavaScript', done)
 // Я учу JavaScript
 // Я прошел этот урок
 ```
+
+## 13 - Объекты, деструктуризация объектов (ES6)
+
+Что бы удалить какое либо свойство из обьекта, существует оператор `delete` 
+```javascript
+const options = {
+	name: "test",
+	width: 1024,
+	height: 1024
+}
+
+delete options.name;
+
+// console result:
+// {width: 1024, height: 1024}
+```
+Для того что бы перебрать все свойства обьекта, пользуемся циклом `for in`, без дополнительных условий, перебор будет проходить только по верхнему уровню обьекта
+
+```javascript
+const options = {
+	name: "test",
+	width: 1024,
+	height: 1024,
+	colors: {
+		border: "black",
+		background: "red"
+	}
+}
+
+for (let key in options) {
+	console.log(`Свойство ${key} имеет значение ${options[key]}`)
+}
+// console result:
+// Свойство name имеет значение test
+// Свойство width имеет значение 1024
+// Свойство height имеет значение 1024
+// Свойство colors имеет значение [object Object]
+```
+
+Для того что бы при переборе углубиться на уровень вложенности ниже, можем написать условную конструкцию:
+
+```javascript
+const options = {
+	name: "test",
+	width: 1024,
+	height: 1024,
+	colors: {
+		border: "black",
+		background: "red"
+	}
+}
+
+for (let key in options) {
+	if(typeof(options[key]) === 'object') {
+		for (let i in options[key]) {
+			console.log(`Свойство ${i} имеет значение ${options[key][i]}`)
+		}
+	} else {
+		console.log(`Свойство ${key} имеет значение ${options[key]}`)
+	}
+}
+// console result:
+// Свойство name имеет значение test
+// Свойство width имеет значение 1024
+// Свойство height имеет значение 1024
+// Свойство border имеет значение black
+// Свойство background имеет значение red
+```
+
+Что бы узнать колличество свойств внутри обьекта, существует метод `Object.keys()`, который собирает свойства (ключи) обьекта в массив, а у массива в свою очередь есть метод `.length`
+```javascript
+const options = {
+	name: "test",
+	width: 1024,
+	height: 1024,
+	colors: {
+		border: "black",
+		background: "red"
+	}
+}
+
+console.log(Object.keys(options)) // ["name", "width", "height", "colors"]
+console.log(Object.keys(options).length) // 4
+```
+
+Для того что бы создать метод, в свойство обьекта необходимо записать функцию
+```javascript
+const options = {
+	name: "test",
+	width: 1024,
+	height: 1024,
+	colors: {
+		border: "black",
+		background: "red"
+	}
+	makeTest: function() {
+		console.log('Test')
+	}
+}
+
+options.makeTest();
+
+// console result
+// Test
+```
+
+Для того что бы деструктуризировать обьект необходимо в переменную вынести свойства обьекта:
+
+```javascript
+const options = {
+	name: "test",
+	width: 1024,
+	height: 1024,
+	colors: {
+		border: "black",
+		background: "red"
+	}
+}
+	const {border, background} = options.colors
+
+console.log(border)
+console.log(background)
+
+//console result:
+// black
+// red
+```
