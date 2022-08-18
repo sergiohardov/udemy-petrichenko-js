@@ -570,3 +570,137 @@ function compareNum(a, b) {
 ```
 ### Псевдо-массивы
 При работе с элементами на странице, мы получаем обьект структура которого совпадает со структурой массива, то есть наглядно он выглядит точно так же как обычный массив, но отличие в том что у таких псевдомассивов отсутствуют большинство методов
+
+## 15 - Передача по ссылке или по значению, Spread оператор (ES6-ES9)
+
+При работе с примитивными типами данных (строки, числа, логические значения), они передаются по значению
+```javascript
+let a = 5;
+let b = a;
+b = b + 5;
+
+cosole.log(b) // 10
+console.log(a) // 5
+```
+
+Когда мы работаем с обьектом, массивом, функциией и т.д., то передача идет не по значению а по **ссылке**, при этом меняя копию мы меняем оригинал
+```javascript
+const obj = {
+	a: 5,
+	b: 7
+}
+
+const copy = obj;
+copy.a = 10;
+
+console.log(copy) // {a: 10, b: 7}
+console.log(obj) // {a: 10, b: 7}
+```
+Для того что бы создать копию обьекта можно создать функцию которая в цикле будет перебирать оригинальный обьект, и записывать в переменную. Но существует два понятия это глубокие и поверхностные копии обьекта. 
+
+```javascript
+function copy(obj) {
+	let objCopy = {}
+	
+	let key;
+	
+	for (key in obj) {
+	objCopy[key] = obj[key]
+	}
+	
+	return objCopy;
+}
+
+const numbers = {
+	a: 2,
+	b: 5,
+	c: {
+		x: 7,
+		y: 9
+	}
+}
+
+const newNumbers = copy(numbers)
+newNumbers.a = 10;
+newNumbers.c.x = 1;
+
+
+console.log(newNumbers); // {a: 10, b: 5, c: {x: 1, y: 9} }
+console.log(numbers);// {a: 2, b: 5, c: {x: 1, y: 9} }
+```
+В примере выше создается поверхностная, это можно увидеть что на верхнем уровне мы можем менять свойства обьекта, не влия на оригинал, а вот вложенный обьек уже передается по ссылке, по этому на прямую влияет на оригинал.
+
+Для того что бы соеденить сразу несколько обьектов есть способ `Object.assign()`
+```javascript
+const numbers = {
+	a: 2,
+	b: 5,
+	c: {
+		x: 7,
+		y: 9
+	}
+}
+
+	const add = {
+	d: 17,
+	e: 20
+	}
+	
+	console.log(Object.assign(numbers, add)) // {a: 2, b: 5, c: {x: 7, y: 9}, d: 17, e: 20}
+```
+Так же при помощи этого способа можно создать поверхностную копию обьекта
+```javascript
+	const add = {
+	d: 17,
+	e: 11
+	}
+	
+	const copy = Object.assign({}, add);
+	
+	copy.d = 20;
+	
+	console.log(copy); // {d: 20, e: 11}
+	console.log(add); // {d: 17, e: 11}
+```
+Для того что бы скопировать массив, метод `.slice()`
+```javascript
+	const oldArray = ['a', 'b', 'c'];
+	const newArray = oldArray.slice();
+
+newArray[1] = 'asdfasfd';
+
+console.log(newArray); // ['a', 'asdfasfd', 'c']
+console.log(oldArray); // ['a', 'b', 'c']
+```
+Еще один способ для создания поверхностной копии это использование оператора разворота (spreed) `...`
+```javascript
+	const video = ['youtube', 'vimeo', 'vine'],
+			blog = ['wordpress', 'livejournal', 'drupal'],
+			internet = [...video, ...blog, 'facebook', 'twitter']
+			
+	console.log(internet); // ['youtube', 'vimeo', 'vine', 'wordpress', 'livejournal', 'drupal', 'facebook', 'twitter']
+```
+Так же этим способом можно передавать аргументы в функцию
+```javascript
+function log(a, b, c) {
+	console.log(a);
+	console.log(b);
+	console.log(c);
+}
+
+const num = [2, 5, 10];
+log(...num);
+
+// console result:
+// 2
+// 5
+// 10
+```
+Что бы создать копию обьекта еще одним способом, через оператор разворота
+```javascript
+const obj = {
+	a: 10,
+	b: 2
+}
+const newObj = {...obj}
+```
