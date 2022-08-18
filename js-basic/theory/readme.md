@@ -1,17 +1,21 @@
 # Конспект "Основы JavaScript"
 
 ## 01 - Что такое JS и как его подключить к странице
-Файлы скриптов подключаются с помощью тега `<script>` в атрибуте `src`.  Подключение происходит в конце страницы перед закрывающими тегами.
 
-Пример: 
+Файлы скриптов подключаются с помощью тега `<script>` в атрибуте `src`. Подключение происходит в конце страницы перед закрывающими тегами.
+
+Пример:
+
 ```javascript
 <script src="js/script.js"></script>
 ```
 
 ## 02 - Переменные и строгий режим
+
 Объявление переменных делается ключевыми словами `let` и `const`, далее следует ее название и оператор присваивания `=`
 
 Пример:
+
 ```javascript
 let number = 5;
 const leftBorderWidth = 1;
@@ -22,7 +26,9 @@ const leftBorderWidth = 1;
 Строгий режим `"use strict"` позволяет избавляться от неточностей в написании кода. Пишется на самой верхней строчке.
 
 ## 03 - Классификация типов данных в JavaScript
+
 ### Простые типы
+
 Числа: `1`, `2`, `3`
 
 Строки: `"string"`, `"name"`
@@ -32,6 +38,7 @@ const leftBorderWidth = 1;
 `null`, `undefined`, `Symbol`, `BigInt`
 
 ### Объекты
+
 Масивы: `[]`
 
 Функции: `function`
@@ -39,7 +46,8 @@ const leftBorderWidth = 1;
 Объект Даты, Регулярные выражения, Ошибки
 
 ## 04 - Простое общение с пользователем
-Пример комманды `confirm()` с двумя вариантами ответа, 
+
+Пример комманды `confirm()` с двумя вариантами ответа,
 
 если нажато `ok`:
 
@@ -47,12 +55,14 @@ const leftBorderWidth = 1;
 const question = confirm("Are you here?");
 console.log(question); // true
 ```
+
 если нажато `cancel`:
 
 ```javascript
 const question = confirm("Are you here?");
 console.log(question); // false
 ```
+
 Когда требуется конкретный ответ от пользователя, используется комманда `prompt();`
 
 ```javascript
@@ -70,7 +80,9 @@ console.log(`https://someurl.com/${category}/5`); // https://someurl.com/toys/5
 ```
 
 ## 06 - Операторы в JS
+
 ### Остаток при делении
+
 Происходит деление левого числа на правое, и в результат попадает число которое которое остается при делении, 5\2 = 2+2+1 = 1
 
 ```javascript
@@ -78,6 +90,7 @@ console.log("5%2"); // 1
 ```
 
 ### Сравнение
+
 Существует не строгое сравнение `==`, и строгое `===`.
 
 Не строгое сравнение происходит по **значению**, пример:
@@ -85,6 +98,7 @@ console.log("5%2"); // 1
 ```javascript
 console.log("2*4 == '8'"); // true
 ```
+
 Строгое сравнение учитывает и **тип данных**, пример:
 
 ```javascript
@@ -92,10 +106,12 @@ console.log("2*4 === '8'"); // false
 ```
 
 ## 07 - Учимся работать с системой контроля версий Git и с сервисом GitHub
+
 ### Работа с новым проектом
+
 Для того что бы Git начал следить за проектом, необходимо открыть терминал, по пути корневой папки и выполнить команду `git init`
 
-После этого необходимо представится для системы, следующими командами: 
+После этого необходимо представится для системы, следующими командами:
 
 `git config --local user.name "ВАШЕ_ИМЯ"`
 
@@ -120,6 +136,7 @@ console.log("2*4 === '8'"); // false
 `git push -u origin main`
 
 ### В процессе работы с подключенным Git
+
 1. Что бы добавить в индекс новые\измененные файлы, необходимо выполнить команду `git add -A`
 
 2. Для того что бы закомитить\сохранить состояние файлом необходимо выполнить команду `git commit -a -m "ВАШ_КОМИТ"`
@@ -127,6 +144,7 @@ console.log("2*4 === '8'"); // false
 3. Что бы запушить изменения `git push`
 
 ## 08 - Как работать с GitHub с разных компьютеров, gitignore и Git Kraken
+
 Для того что бы на другом компьютере развернуть проект с GitHub, необходимо в рабочей папке выполнить команду:
 
 `git clone https://github.com/ваша_ссылка_на_репозиторий.git название_папки`
@@ -137,53 +155,58 @@ console.log("2*4 === '8'"); // false
 
 После этого если мы возвращаемся за другой компьютер, перед началом работы необходимо выполнить команду `git pull`. Это выполнит обновление вашего проекта если были сделаны изменения на другом копьютере
 
-Если были сделаны изменения на другом компьютере, и перед тем как вносить изменения, мы не сделали `git pull`, при пуше возникнет ошибка. 
+Если были сделаны изменения на другом компьютере, и перед тем как вносить изменения, мы не сделали `git pull`, при пуше возникнет ошибка.
 
 Для того что бы исправить ошибку необходимо запросить актуальную версию проекта `git pull`, после этого git войдет в режим **слияния** (merge)
 
 В терминале где напечатаны волны (~), необходимо написать комит, после этого нажать сочетание клавиш `Ctrl + C` дважды, и после этого написать `:wq!` и нажать `Enter`
 
 ## 09 - Условия
+
 ### Тернарный оператор
+
 Если условие возвращает `true`, то будет выполнена левая часть (после ?), если же `false`, выполнится правая часть (после :) Синтаксис тернарного оператора следующий:
 
 ```javascript
 const num = 50;
-(num === 50) ? console.log('Ok!') : console.log('Error!'); // Ok!
+num === 50 ? console.log("Ok!") : console.log("Error!"); // Ok!
 ```
 
 ### Switch
-Условие работает **только со строгим сравнением**, и перебирает варианты по очередно. Ключевое слово `break`, прерывает выполнение шага, и переходит к следующему в случае `false`. Синтаксис следующий: 
+
+Условие работает **только со строгим сравнением**, и перебирает варианты по очередно. Ключевое слово `break`, прерывает выполнение шага, и переходит к следующему в случае `false`. Синтаксис следующий:
 
 ```javascript
 const num = 50;
 
 switch (num) {
-	case 49:
-		console.log('Erorr');
-		break;
-	case 100: 
-		console.log('Erorr');
-		break;
-	case 50: 
-		console.log('Ok');
-		break;
-	default: 
-		console.log('Some error');
-		break;
+  case 49:
+    console.log("Erorr");
+    break;
+  case 100:
+    console.log("Erorr");
+    break;
+  case 50:
+    console.log("Ok");
+    break;
+  default:
+    console.log("Some error");
+    break;
 }
 ```
 
 ## 10 - Циклы
+
 ### Цикл while
+
 Логика выполнения следующая - пока условие верно, будет выполнятся цикл до того момента пока оно станет не верным. Если бы в выражении мы не поставили итерацию переменной `num` на каждом шаге, цикл бы длился бесконечно. Синтаксис:
 
 ```javascript
 let num = 50;
 
 while (num <= 55) {
-	console.log(num);
-	num++;
+  console.log(num);
+  num++;
 }
 // console result:
 // 50
@@ -193,16 +216,18 @@ while (num <= 55) {
 // 54
 // 55
 ```
+
 ### Цикл do while
+
 Этот цикл отличается тем что он всегда сначала выполнит первый раз условие которое находится в блоке `do` а после будет уже проверять условие `while`. Синтаксис:
 
 ```javascript
 let num = 50;
 
 do {
-	console.log(num);
-	num++;
-} while (num <= 55) ;
+  console.log(num);
+  num++;
+} while (num <= 55);
 
 // console result:
 // 50
@@ -212,12 +237,14 @@ do {
 // 54
 // 55
 ```
+
 ### Цикл for
+
 Цикл с более детальной настройкой выполнения. Синтаксис:
 
 ```javascript
 for (let i = 1; i < 8; i++) {
-	console.log(i);
+  console.log(i);
 }
 
 // console result:
@@ -229,14 +256,15 @@ for (let i = 1; i < 8; i++) {
 // 6
 // 7
 ```
+
 Для того что бы остановить бесконечный цикл, или по конкретному условию, используется ключевое слово `break`. Синтаксис:
 
 ```javascript
 for (let i = 1; i < 10; i++) {
-	if (i === 6) {
-		break;
-	}
-	console.log(i);
+  if (i === 6) {
+    break;
+  }
+  console.log(i);
 }
 
 // console result:
@@ -247,14 +275,14 @@ for (let i = 1; i < 10; i++) {
 // 5
 ```
 
-Для того что бы пропустить шаг цикла, используется ключевое слово `continue`. Синтаксис: 
+Для того что бы пропустить шаг цикла, используется ключевое слово `continue`. Синтаксис:
 
 ```javascript
 for (let i = 1; i < 10; i++) {
-	if (i === 6) {
-		continue;
-	}
-	console.log(i);
+  if (i === 6) {
+    continue;
+  }
+  console.log(i);
 }
 
 // console result:
@@ -270,9 +298,10 @@ for (let i = 1; i < 10; i++) {
 
 ## 11 - Методы и свойства строк и чисел
 
-Что бы увидеть все свойства или методы, нужно в консоле вызвать комманду `console.dir()` 
+Что бы увидеть все свойства или методы, нужно в консоле вызвать комманду `console.dir()`
 
 ### Работа со строками
+
 Поиск места откуда начинается слово
 
 ```javascript
@@ -288,6 +317,7 @@ console.log(text.slice("6, 11")); //world
 ```
 
 ### Работа с числами
+
 Округление к целому числу
 
 ```javascript
@@ -301,6 +331,7 @@ console.log(Math.round(num)); //12
 const num = "12.2px";
 console.log(parseInt(num)); //12
 ```
+
 Преобразование строки в число c плавающей точкой
 
 ```javascript
@@ -309,17 +340,18 @@ console.log(parseFloat(num)); //12.2
 ```
 
 ## 12 - Callback - функции
+
 Функция которая должна быть выполнена после того, как другая функция завершила свое выполнение.
 
 ```javascript
 function learnJS(lang, callback) {
-	console.log(`Я учу ${lang}`);
-	callback();
+  console.log(`Я учу ${lang}`);
+  callback();
 }
 function done() {
-	console.log('Я прошел этот урок')
+  console.log("Я прошел этот урок");
 }
-learnJS('JavaScript', done)
+learnJS("JavaScript", done);
 
 // console result:
 // Я учу JavaScript
@@ -328,34 +360,36 @@ learnJS('JavaScript', done)
 
 ## 13 - Объекты, деструктуризация объектов (ES6)
 
-Что бы удалить какое либо свойство из обьекта, существует оператор `delete` 
+Что бы удалить какое либо свойство из обьекта, существует оператор `delete`
+
 ```javascript
 const options = {
-	name: "test",
-	width: 1024,
-	height: 1024
-}
+  name: "test",
+  width: 1024,
+  height: 1024,
+};
 
 delete options.name;
 
 // console result:
 // {width: 1024, height: 1024}
 ```
+
 Для того что бы перебрать все свойства обьекта, пользуемся циклом `for in`, без дополнительных условий, перебор будет проходить только по верхнему уровню обьекта
 
 ```javascript
 const options = {
-	name: "test",
-	width: 1024,
-	height: 1024,
-	colors: {
-		border: "black",
-		background: "red"
-	}
-}
+  name: "test",
+  width: 1024,
+  height: 1024,
+  colors: {
+    border: "black",
+    background: "red",
+  },
+};
 
 for (let key in options) {
-	console.log(`Свойство ${key} имеет значение ${options[key]}`)
+  console.log(`Свойство ${key} имеет значение ${options[key]}`);
 }
 // console result:
 // Свойство name имеет значение test
@@ -368,23 +402,23 @@ for (let key in options) {
 
 ```javascript
 const options = {
-	name: "test",
-	width: 1024,
-	height: 1024,
-	colors: {
-		border: "black",
-		background: "red"
-	}
-}
+  name: "test",
+  width: 1024,
+  height: 1024,
+  colors: {
+    border: "black",
+    background: "red",
+  },
+};
 
 for (let key in options) {
-	if(typeof(options[key]) === 'object') {
-		for (let i in options[key]) {
-			console.log(`Свойство ${i} имеет значение ${options[key][i]}`)
-		}
-	} else {
-		console.log(`Свойство ${key} имеет значение ${options[key]}`)
-	}
+  if (typeof options[key] === "object") {
+    for (let i in options[key]) {
+      console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
+    }
+  } else {
+    console.log(`Свойство ${key} имеет значение ${options[key]}`);
+  }
 }
 // console result:
 // Свойство name имеет значение test
@@ -395,22 +429,24 @@ for (let key in options) {
 ```
 
 Что бы узнать колличество свойств внутри обьекта, существует метод `Object.keys()`, который собирает свойства (ключи) обьекта в массив, а у массива в свою очередь есть метод `.length`
+
 ```javascript
 const options = {
-	name: "test",
-	width: 1024,
-	height: 1024,
-	colors: {
-		border: "black",
-		background: "red"
-	}
-}
+  name: "test",
+  width: 1024,
+  height: 1024,
+  colors: {
+    border: "black",
+    background: "red",
+  },
+};
 
-console.log(Object.keys(options)) // ["name", "width", "height", "colors"]
-console.log(Object.keys(options).length) // 4
+console.log(Object.keys(options)); // ["name", "width", "height", "colors"]
+console.log(Object.keys(options).length); // 4
 ```
 
 Для того что бы создать метод, в свойство обьекта необходимо записать функцию
+
 ```javascript
 const options = {
 	name: "test",
@@ -435,18 +471,18 @@ options.makeTest();
 
 ```javascript
 const options = {
-	name: "test",
-	width: 1024,
-	height: 1024,
-	colors: {
-		border: "black",
-		background: "red"
-	}
-}
-	const {border, background} = options.colors
+  name: "test",
+  width: 1024,
+  height: 1024,
+  colors: {
+    border: "black",
+    background: "red",
+  },
+};
+const { border, background } = options.colors;
 
-console.log(border)
-console.log(background)
+console.log(border);
+console.log(background);
 
 //console result:
 // black
@@ -454,29 +490,35 @@ console.log(background)
 ```
 
 ## 14 - Массивы и псевдомассивы
+
 ### Добавление, удаление из массива
+
 Метод который удаляет последний элемент из массива
+
 ```javascript
 const arr = [1, 2, 3, 6, 8];
-arr.pop()
-console.log(arr) // [1, 2, 3, 6]
+arr.pop();
+console.log(arr); // [1, 2, 3, 6]
 ```
 
 Метод который добавляет элемент в конец массива
+
 ```javascript
 const arr = [1, 2, 3, 6, 8];
-arr.push(10)
-console.log(arr) // [1, 2, 3, 6, 8, 10]
+arr.push(10);
+console.log(arr); // [1, 2, 3, 6, 8, 10]
 ```
+
 При работе с началом масива, при добавлении или удалении элемента у всех последующих переписывается id, по этому в такой ситуации необходимо всем переназначить id
 
 ### Перебор массива
+
 Для того что бы перебрать массив, можно воспользоваться циклами `for`:
 
 ```javascript
 const arr = [1, 2, 3, 6, 8];
 for (let i = 0; i < arr.length; i++) {
-	console.log(arr[i]);
+  console.log(arr[i]);
 }
 //console result:
 // 2
@@ -485,11 +527,12 @@ for (let i = 0; i < arr.length; i++) {
 // 8
 ```
 
-или `for of`, преимущество пользования этим циклом то что в нем работают `brake`, и `continue`,  работает только с массиво-подобными сущностями: 
+или `for of`, преимущество пользования этим циклом то что в нем работают `brake`, и `continue`, работает только с массиво-подобными сущностями:
+
 ```javascript
 const arr = [1, 2, 3, 6, 8];
 for (let value of arr) {
-	console.log(value);
+  console.log(value);
 }
 //console result:
 // 2
@@ -499,11 +542,12 @@ for (let value of arr) {
 ```
 
 или `forEach`, в метод передается callback функция, которая имеет 3 аргумента, первый это сам элемент итерации, второй это номер по порядку, третий это ссылка на массив:
+
 ```javascript
 const arr = [1, 2, 3, 6, 8];
-arr.forEach(function(item, i, arr) {
-	console.log(`${i}: ${item} внутри массива ${arr}`)
-})
+arr.forEach(function (item, i, arr) {
+  console.log(`${i}: ${item} внутри массива ${arr}`);
+});
 // console result:
 // 0: 1 внутри массива 1,2,3,6,8
 // 1: 2 внутри массива 1,2,3,6,8
@@ -513,179 +557,204 @@ arr.forEach(function(item, i, arr) {
 ```
 
 ### Прочие метдоды массива
+
 Получить длину массива можно с помощью метода `.length`
+
 ```javascript
 const arr = [1, 2, 3, 6, 8];
 console.log(arr.length); // 5
 ```
+
 Метод `.length` работает по принципу: берет последний индекс массива, и добавляет к нему единицу (1). По этому если не правильно заполнить массив мы можем получить ошибочные данные. Например:
+
 ```javascript
 const arr = [1, 2, 3, 6, 8];
 arrr[99] = 0;
 console.log(arr.length); // 100
-console.log(arr) // [1, 2, 3, 6, 8, empty × 94, 0]
+console.log(arr); // [1, 2, 3, 6, 8, empty × 94, 0]
 ```
 
 Методы которые на выходе трансфармируют массив: `arr.map`, `arr.every\some`, `arr.filter`, `arr.reduce`
 
 Для того что бы конвертировать строковое значение в массив по разделителю, метод `.split()`
+
 ```javascript
 const str = "qqq, aaa, ddd";
-const strNew = str.split(", ")
+const strNew = str.split(", ");
 
 console.log(strNew); // ['qqq', 'aaa', 'ddd']
 ```
 
 Для того что бы конвертировать строку в массив, метод `.join()`
+
 ```javascript
-const str = ['qqq', 'aaa', 'ddd'];
-const strNew = str.join("; ")
+const str = ["qqq", "aaa", "ddd"];
+const strNew = str.join("; ");
 
 console.log(strNew); // "qqq; aaa; ddd"
 ```
 
 Для того что бы отсортировать, метод `.sort()`.
 На примере строк:
+
 ```javascript
-const str = ['qqq', 'aaa', 'bbb'];
-const strNew = str.join("; ")
-strNew.sort()
+const str = ["qqq", "aaa", "bbb"];
+const strNew = str.join("; ");
+strNew.sort();
 console.log(strNew); // "aaa; bbb; qqq"
 ```
+
 На примере чисел:
+
 ```javascript
 const arr = [2, 13, 26, 8, 10];
-arr.sort()
+arr.sort();
 console.log(arr); // [10, 13, 2, 26, 8]
 ```
+
 Изначально метод сортирует как строки, и в данном случае сравнение по символьно. Что бы отсортировать по возрастанию нужно во внутрь метода передать callback функцию (шаблон), по которому будет происходить сортировка
+
 ```javascript
 const arr = [2, 13, 26, 8, 10];
-arr.sort(compareNum)
+arr.sort(compareNum);
 console.log(arr); // [2, 8, 10, 13, 26]
 
 function compareNum(a, b) {
-	return a - b;
+  return a - b;
 }
 ```
+
 ### Псевдо-массивы
+
 При работе с элементами на странице, мы получаем обьект структура которого совпадает со структурой массива, то есть наглядно он выглядит точно так же как обычный массив, но отличие в том что у таких псевдомассивов отсутствуют большинство методов
 
 ## 15 - Передача по ссылке или по значению, Spread оператор (ES6-ES9)
 
 При работе с примитивными типами данных (строки, числа, логические значения), они передаются по значению
+
 ```javascript
 let a = 5;
 let b = a;
 b = b + 5;
 
-cosole.log(b) // 10
-console.log(a) // 5
+cosole.log(b); // 10
+console.log(a); // 5
 ```
 
 Когда мы работаем с обьектом, массивом, функциией и т.д., то передача идет не по значению а по **ссылке**, при этом меняя копию мы меняем оригинал
+
 ```javascript
 const obj = {
-	a: 5,
-	b: 7
-}
+  a: 5,
+  b: 7,
+};
 
 const copy = obj;
 copy.a = 10;
 
-console.log(copy) // {a: 10, b: 7}
-console.log(obj) // {a: 10, b: 7}
+console.log(copy); // {a: 10, b: 7}
+console.log(obj); // {a: 10, b: 7}
 ```
-Для того что бы создать копию обьекта можно создать функцию которая в цикле будет перебирать оригинальный обьект, и записывать в переменную. Но существует два понятия это глубокие и поверхностные копии обьекта. 
+
+Для того что бы создать копию обьекта можно создать функцию которая в цикле будет перебирать оригинальный обьект, и записывать в переменную. Но существует два понятия это глубокие и поверхностные копии обьекта.
 
 ```javascript
 function copy(obj) {
-	let objCopy = {}
-	
-	let key;
-	
-	for (key in obj) {
-	objCopy[key] = obj[key]
-	}
-	
-	return objCopy;
+  let objCopy = {};
+
+  let key;
+
+  for (key in obj) {
+    objCopy[key] = obj[key];
+  }
+
+  return objCopy;
 }
 
 const numbers = {
-	a: 2,
-	b: 5,
-	c: {
-		x: 7,
-		y: 9
-	}
-}
+  a: 2,
+  b: 5,
+  c: {
+    x: 7,
+    y: 9,
+  },
+};
 
-const newNumbers = copy(numbers)
+const newNumbers = copy(numbers);
 newNumbers.a = 10;
 newNumbers.c.x = 1;
 
-
 console.log(newNumbers); // {a: 10, b: 5, c: {x: 1, y: 9} }
-console.log(numbers);// {a: 2, b: 5, c: {x: 1, y: 9} }
+console.log(numbers); // {a: 2, b: 5, c: {x: 1, y: 9} }
 ```
+
 В примере выше создается поверхностная, это можно увидеть что на верхнем уровне мы можем менять свойства обьекта, не влия на оригинал, а вот вложенный обьек уже передается по ссылке, по этому на прямую влияет на оригинал.
 
 Для того что бы соеденить сразу несколько обьектов есть способ `Object.assign()`
+
 ```javascript
 const numbers = {
-	a: 2,
-	b: 5,
-	c: {
-		x: 7,
-		y: 9
-	}
-}
+  a: 2,
+  b: 5,
+  c: {
+    x: 7,
+    y: 9,
+  },
+};
 
-	const add = {
-	d: 17,
-	e: 20
-	}
-	
-	console.log(Object.assign(numbers, add)) // {a: 2, b: 5, c: {x: 7, y: 9}, d: 17, e: 20}
+const add = {
+  d: 17,
+  e: 20,
+};
+
+console.log(Object.assign(numbers, add)); // {a: 2, b: 5, c: {x: 7, y: 9}, d: 17, e: 20}
 ```
+
 Так же при помощи этого способа можно создать поверхностную копию обьекта
-```javascript
-	const add = {
-	d: 17,
-	e: 11
-	}
-	
-	const copy = Object.assign({}, add);
-	
-	copy.d = 20;
-	
-	console.log(copy); // {d: 20, e: 11}
-	console.log(add); // {d: 17, e: 11}
-```
-Для того что бы скопировать массив, метод `.slice()`
-```javascript
-	const oldArray = ['a', 'b', 'c'];
-	const newArray = oldArray.slice();
 
-newArray[1] = 'asdfasfd';
+```javascript
+const add = {
+  d: 17,
+  e: 11,
+};
+
+const copy = Object.assign({}, add);
+
+copy.d = 20;
+
+console.log(copy); // {d: 20, e: 11}
+console.log(add); // {d: 17, e: 11}
+```
+
+Для того что бы скопировать массив, метод `.slice()`
+
+```javascript
+const oldArray = ["a", "b", "c"];
+const newArray = oldArray.slice();
+
+newArray[1] = "asdfasfd";
 
 console.log(newArray); // ['a', 'asdfasfd', 'c']
 console.log(oldArray); // ['a', 'b', 'c']
 ```
+
 Еще один способ для создания поверхностной копии это использование оператора разворота (spreed) `...`
+
 ```javascript
-	const video = ['youtube', 'vimeo', 'vine'],
-			blog = ['wordpress', 'livejournal', 'drupal'],
-			internet = [...video, ...blog, 'facebook', 'twitter']
-			
-	console.log(internet); // ['youtube', 'vimeo', 'vine', 'wordpress', 'livejournal', 'drupal', 'facebook', 'twitter']
+const video = ["youtube", "vimeo", "vine"],
+  blog = ["wordpress", "livejournal", "drupal"],
+  internet = [...video, ...blog, "facebook", "twitter"];
+
+console.log(internet); // ['youtube', 'vimeo', 'vine', 'wordpress', 'livejournal', 'drupal', 'facebook', 'twitter']
 ```
+
 Так же этим способом можно передавать аргументы в функцию
+
 ```javascript
 function log(a, b, c) {
-	console.log(a);
-	console.log(b);
-	console.log(c);
+  console.log(a);
+  console.log(b);
+  console.log(c);
 }
 
 const num = [2, 5, 10];
@@ -696,11 +765,13 @@ log(...num);
 // 5
 // 10
 ```
+
 Что бы создать копию обьекта еще одним способом, через оператор разворота
+
 ```javascript
 const obj = {
-	a: 10,
-	b: 2
-}
-const newObj = {...obj}
+  a: 10,
+  b: 2,
+};
+const newObj = { ...obj };
 ```
