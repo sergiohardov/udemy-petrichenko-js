@@ -775,3 +775,65 @@ const obj = {
 };
 const newObj = { ...obj };
 ```
+
+## 16 - Основы ООП, прототипно-ориентированное наследование
+
+Наследование свойств от прототипа (старый вариант)
+
+```javascript
+const soldier = {
+  health: 400,
+  armor: 100,
+  sayHello: function () {
+    console.log("Hello");
+  },
+};
+
+const john = {
+  health: 100,
+};
+
+john.__proto__ = soldier;
+
+console.log(john); // { health: 100 }
+console.log(john.armor); // { 100 }
+console.log(john.sayHello()); // Hello
+```
+
+Современное использование прототипов
+
+```javascript
+const soldier = {
+  health: 400,
+  armor: 100,
+  sayHello: function () {
+    console.log("Hello");
+  },
+};
+
+const john = {
+  health: 100,
+};
+
+Object.setPrototypeOf(john, soldier);
+
+console.log(john); // { health: 100 }
+console.log(john.armor); // { 100 }
+console.log(john.sayHello()); // Hello
+```
+
+Создание нового обьекта и присвоение прототипного наследования
+
+```javascript
+const soldier = {
+  health: 400,
+  armor: 100,
+  sayHello: function () {
+    console.log("Hello");
+  },
+};
+
+const john = Object.create(soldier);
+
+console.log(john.sayHello()); // Hello
+```
