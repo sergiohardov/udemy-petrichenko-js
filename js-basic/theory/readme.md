@@ -837,3 +837,6 @@ const john = Object.create(soldier);
 
 console.log(john.sayHello()); // Hello
 ```
+
+## 17 - Замыкание и лексическое окружение
+Пересмотреть несколько раз урок
