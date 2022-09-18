@@ -313,7 +313,7 @@ console.log(text.indexOf("fruit")); //6
 
 ```javascript
 const text = "Hello world";
-console.log(text.slice("6, 11")); //world
+console.log(text.slice(6, 11)); //world
 ```
 
 ### Работа с числами
