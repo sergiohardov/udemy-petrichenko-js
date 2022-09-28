@@ -983,3 +983,19 @@ script.src = "js/script.js";
 script.async = false;
 document.body.append(script);
 ```
+
+## * - Оператор нулевого слияния (Nullish, ??) ES11
+Оператор работает на примере как или `||` только он воспринимает не все 5 значений, которые false в логическом контексте, а только с двумя `null` и `undefiend`. Если в выражение попадает `null` или `undefiend`, то будет возвращен второй вариант.
+```javascript
+let userName;
+console.log(userName ?? 'User') // User
+```
+```javascript
+let userName = null;
+console.log(userName ?? 'User') // User
+```
+Но если в переменную будет передан0 `0`, `пустую строку`, `NaN`, или `false` то мы получим уже первое значение
+```javascript
+let userName = 0;
+console.log(userName ?? 'User') // 0
+```
