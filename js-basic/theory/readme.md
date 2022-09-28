@@ -999,3 +999,5 @@ console.log(userName ?? 'User') // User
 let userName = 0;
 console.log(userName ?? 'User') // 0
 ```
+## * - Оператор опциональной цепочки (?.) ES11
+Пересмотреть несколько раз урок
