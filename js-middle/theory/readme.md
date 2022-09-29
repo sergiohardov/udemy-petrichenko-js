@@ -96,4 +96,4 @@
 Для того что бы ориентироваться на наличие класса у элемента можно использовать `event.target.classList.contains('class_name')`.
 
 Так же альтернативным способом можно использовать метод `.matches()` например, мы хотим что бы условие подходило под элементы _кнопка_, с классом _.btn_
-`event.target.classList.matches('button.btn')`
+`event.target.matches('button.btn')`
