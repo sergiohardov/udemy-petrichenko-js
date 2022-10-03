@@ -98,12 +98,83 @@
 Так же альтернативным способом можно использовать метод `.matches()` например, мы хотим что бы условие подходило под элементы _кнопка_, с классом _.btn_
 `event.target.matches('button.btn')`
 
-## * - Значение по умолчанию
+## \* - Значение по умолчанию
+
 Для того что бы в функции у аргумента было дефолтное значение, при обьявлении аргумента в функции необходимо ему присвоить значение по умолчанию
+
 ```javascript
 function test(i = 12) {
-	console.log(i);
+  console.log(i);
 }
-test(3) // 3
-test() // 12
+test(3); // 3
+test(); // 12
+```
+
+## 02 - Скрипты и время их выполнения. setTimeout и setInterval
+
+Используется для отложенного (асинхронного) запуска функции.
+
+```javascript
+setTimeout(function () {
+  console.log("text");
+}, 2000);
+
+// console result after 2sec
+text;
+```
+
+Для того что бы четко определьять различные `setTimeout`, помещаем его в переменную, тем самым мы записываем числовой индетификатор этого таймера, для того что бы в дальнейшем его останавливать
+
+```javascript
+const timerId = setTimeout(function () {
+  console.log("text");
+}, 2000);
+
+// console result after 2sec
+text;
+```
+
+Для того что бы сбросить таймер функцию `setTimeout`, необходимо использовать функцию `clearInterval()`
+
+```javascript
+const timerId = setTimeout(function () {
+  console.log("text");
+}, 2000);
+
+clearInterval(timerId);
+
+// console result after 2sec empty
+```
+
+Для того что бы скрипт, повторял выполнение после определенного колличества времени используется `setInterval()`
+
+```javascript
+const timerId = setInterval(function() {
+	console.log('text')
+}, 2000)
+
+// console result after 2sec
+text
+// console result after 2sec
+(2) text
+...
+```
+
+Для того что бы остановить выполнение интервала, необходимо так же поместить `setInterval()` в переменную и с помощью `clearInterval()` остановить выполнение.
+
+### Чем рекурсивный setTimeout лучше чем обычный setInterval
+
+`setInterval()` не учитывает как долго будет выполнятся скрипт внутри, то есть если функция обьемная, или завязана на том что ожидает получения каких то данных с сервера, то построение такого интервала может вызвать ошибки. В таких случаях, что бы избежать ошибки используют рекурсивный `setTimeout()`:
+
+```javascript
+let id = setTimeout(function log() {
+	console.log('text')
+	id = setTimeout(log, 500)
+}, 500)
+
+// console result after 0.5sec
+text
+// console result after 0.5sec
+(2) text
+...
 ```
