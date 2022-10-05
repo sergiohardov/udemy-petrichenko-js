@@ -1059,7 +1059,74 @@ userData.hey?.() // undefiend
 
 ## \* - Живые коллекции и полезные методы
 
-Пересмотреть несколько раз урок
+На примере получаем разные псевдоколлекции: узлы и элементы.
+
+```html
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</body>
+<script>
+  const boxesQuery = document.querySelector(".box");
+  const boxesGet = document.getElementByClassName("box");
+
+  console.log(boxesQuery); // NodeList(3) [div.box, div.box, div.box]
+  console.log(boxesGet); // HTMLCollection(3) [div.box, div.box, div.box]
+</script>
+```
+
+Если мы для наглядности удалим с каждой псевдоколлекции первый элемент то получим следующий результат:
+
+```javascript
+boxesQuery[0].remove();
+boxesGet[0].remove();
+
+console.log(boxesQuery); // NodeList(3) [div.box, div.box, div.box]
+console.log(boxesGet); // HTMLCollection(3) [div.box]
+```
+
+В случае с `boxesQuery` мы получили состояние на момент записи в переменную - является статичной. В случае `boxesGet` - отслеживает все изменения в DOM дереве и дает текущий результат. Такое поведение и называется живыми коллекциями.
+
+Используется тогда когда нужно следить динамически за состоянием DOM дерева, но с нюансами, у таких псевдомассивов нет методов для работы с ним. В таком случае используется комманда которая позволяет создать массив из массивоподобного обьекта `Array.from()`. Но когда мы преобразуем таким способом массив, тот массив который окажется на выходе - будет статичным.
+
+```javascript
+console.log(Array.from(boxesGet)); // [div.box]
+```
+
+### Методы
+
+`.maches()` - метод позволяет найти элемент подходящий по параметрам, css селектору. Применяется прямо на DOM елементах
+
+```html
+<body>
+  <div class="box"></div>
+  <div class="box this"></div>
+  <div class="box"></div>
+</body>
+<script>
+  const boxesQuery = document.querySelector(".box");
+  boxesQuery.forEach((box) => {
+    if (box.matches(".this")) console.log(box); // <div class="box this"></div>
+  });
+</script>
+```
+
+`.closest()` - позволяет получить первый ближайший родительский элемент подходящий по параметрам, css селектору.
+
+```html
+<body>
+  <div class="wrapper">
+    <div class="box"></div>
+    <div class="box this"></div>
+    <div class="box"></div>
+  </div>
+</body>
+<script>
+  const boxesQuery = document.querySelector(".box");
+  console.log(boxesQuery[0].closest(".wrapper")); // <div class="wrapper">...</div>
+</script>
+```
 
 ## \* - Тип данных Symbol
 
