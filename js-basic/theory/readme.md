@@ -1132,9 +1132,59 @@ console.log(Array.from(boxesGet)); // [div.box]
 
 Пересмотреть несколько раз урок
 
-## \* - Дескрипторы свойств и полезные методы объектов
+## * - Дескрипторы свойств и полезные методы объектов
 
-Пересмотреть несколько раз урок
+У каждого из свойст обьекта помимо значений есть и специальные атрибуты которые еще глубже определяют как работет это свойство (флаги), их бывает 3:
+`writable` - если в позиции `true`, то значит свойство можно изменить, если `false` то только для чтения.
+`enumerable` - если в позиции `true` то свойство будет перечислятся в циклах, если `false` то циклы будут игнорировать
+`configurable` - если в позиции `true` то свойство можно будет удалить, а атрибуты его можно будет изменить, если `false` то делать этого всего будет нельзя.
+
+Для всех создаваемых нами в ручную свойств, они всегда стоят в позиции `true`
+
+Для того что бы в консоли получить эти флаги воспользуемся коммандой `Object.getOwnPropertyDescriptor(arg1, arg2)` - где первый аргумент это обьект, второй это то свойство флаги которого мы хотим увидеть.
+
+```javascript
+const user = {
+  name: "Alex",
+  surname: "Smith",
+  birthday: "20/04/1993",
+  showMyPublicData: function () {
+    console.log(`${this.name} ${this.surname}`);
+  },
+};
+
+console.log(Object.getOwnPropertyDescriptor(user, "name"));
+// console result:
+// {value: 'Alex', writable: true, enumerable: true, configurable: true}
+```
+
+Для того что бы изменить параметр флага воспользуемся коммандой `Object.defineProperty(arg1, arg2, {arg3})` - где первый аргумент это обьект, второй свойство, третье это флаг который мы хотим изменить
+
+```javascript
+Object.defineProperty(user, "name", { writable: false });
+user.name = "asdasd";
+// console result
+// ошибка (свойство только read only)
+```
+
+При помощи `Object.defineProperty()`, мы можем создавать новые свойства у обьекта, при этом если оставить пустым 3 аргумент, то по дефолту значения поставятся в `false`
+
+```javascript
+Object.defineProperty(user, "gender", { value: "male" });
+console.log(user);
+// console result
+//{name: 'Alex', surname: 'Smith', birthday: '20/04/1993', gender: 'male', showMyPublicData: ƒ}
+console.log(Object.getOwnPropertyDescriptor(user, "gender"));
+// console result
+//{value: 'male', writable: false, enumerable: false, configurable: false}
+```
+
+### Методы обьектов
+`Object.is()` - Сравнивает между собой обьекты (похожи между собой или нет)
+`Object.keys()` - Разбивает обьект на массив с ключами
+`Object.values()` - Разбивает обьект на массив со значениями
+`Object.entries()` - Разбивает обьект на массив, внутри которого записаны массивы `[[ключ, значение],...]`
+
 
 ## \* - Итерируемые конструкции
 
